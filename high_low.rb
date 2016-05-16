@@ -1,7 +1,8 @@
 module HighLow
-	attr_accessor :player
+	attr_accessor :player 
 	
 	def self.play(player)
+		@cont = true
 		@deck = Mechanics::Deck.new
 		@player_card = @deck.cards.sample
 		@deck.cards.delete(@player_card)
@@ -36,10 +37,10 @@ module HighLow
 					puts "Your remaining bankroll is #{player.bank_roll}"
 				end
 		end
-		continue?(player)
+		HighLow.continue?(player)
 	end
 
-	def continue?(player)
+	def self.continue?(player)
 		puts "What would you like to do"
 		puts "1. Play again"
 		puts "2. Cash out"
@@ -48,11 +49,15 @@ module HighLow
 			HighLow.play(player)
 		elsif input == "2"
 			puts "Your current bankroll is #{player.bank_roll}"
-			break
+			HighLow.back_to_menu
 		else
 			puts "That is not valid input"
-			continue?(player)
+			HighLow.continue?(player)
 		end
+	end
+
+	def self.back_to_menu
+		@cont = false
 	end
 end
 
