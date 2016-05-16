@@ -1,5 +1,5 @@
 module HighLow
-	def play
+	def self.play
 		@deck = Deck.new
 		@player_card = @deck.sample
 		@deck.delete(@player_card)
