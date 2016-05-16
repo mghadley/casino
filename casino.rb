@@ -4,6 +4,7 @@
 #high low game module or class
 require 'pry'
 require_relative 'high_low'
+require_relative 'slots'
 #TODO create main method
 #player class
 #slot machine module or class
@@ -15,6 +16,7 @@ class Casino
 
 	include Mechanics
 	include HighLow
+	include Slots
 
 	def game_menu
 
@@ -28,7 +30,8 @@ class Casino
 
 			case gets.strip
 			when "1"
-
+				puts "--Welcome to the $5 Slots---"
+				Slots.play(@player)
 			when "2"
 				HighLow.play(@player)
 
