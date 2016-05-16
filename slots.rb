@@ -3,7 +3,7 @@ module Slots
 	
 	def self.play(player)
 		@cont = true
-		@slots_arr = ["Cherry", "BAR", "Sevens"]
+		@slots_arr = ["BAR", "☃", "☺", "❤", "✄", "⌘"]
 		puts "Press Enter to spin, type exit to cancel"
 		user_input = gets
 		if user_input == "\n"
@@ -22,11 +22,12 @@ module Slots
 				else 
 					puts "You lossssttttt"
 					player.bank_roll -= 5
+					Mechanics::Balance.check_balance(player)
 					puts "Your bankroll is now #{player.bank_roll}"
 			end
 			Slots.play_again?(player)
 		elsif user_input.strip == "exit"
-			puts "Your current bankroll is#{player.bank_roll}"
+			puts "Your current bankroll is $#{player.bank_roll}"
 			puts "Goodbye"
 		else
 			puts "Invalid input"
@@ -52,8 +53,13 @@ module Slots
 	end
 
 	def self.play_again?(player)
-		puts "Spin again? (y/n)"
-		gets.strip == "y" ? Slots.play(player) : @cont = false
+		if player.bank_roll > 4
+			puts "Spin again? (y/n)"
+			gets.strip == "y" ? Slots.play(player) : @cont = false
+		else
+			puts "Your current bank roll is #{player.bank_roll}"
+			puts "You don't have enough money to continue with slots. Maybe try High Low."
+		end
 	end
 
 end

@@ -22,6 +22,7 @@ module HighLow
 					puts "The dealer's card is the #{@dealer_card.rank} of #{@dealer_card.suit}"
 					puts "You lose!!"
 					player.bank_roll -= bet
+					Mechanics::Balance.check_balance(player)
 					puts "Your remaining bankroll is #{player.bank_roll}"
 				end
 			when "higher"
@@ -34,6 +35,7 @@ module HighLow
 					puts "The dealer's card is the #{@dealer_card.rank} of #{@dealer_card.suit}"
 					puts "You lose!!"
 					player.bank_roll -= bet
+					Mechanics::Balance.check_balance(player)
 					puts "Your remaining bankroll is #{player.bank_roll}"
 				end
 		end

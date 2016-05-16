@@ -30,8 +30,13 @@ class Casino
 
 			case gets.strip
 			when "1"
-				puts "--Welcome to the $5 Slots---"
-				Slots.play(@player)
+				if @player.bank_roll > 4
+					puts "--Welcome to the $5 Slots---"
+					Slots.play(@player)
+				else
+					puts "Your current bankroll is $#{player.bank_roll}"
+					puts "You do not have enought money for slots. Maybe try High Low"
+				end
 			when "2"
 				HighLow.play(@player)
 
