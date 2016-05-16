@@ -19,16 +19,31 @@ class Casino
 	def game_menu
 
 		@player = Mechanics::Player.new
-		puts "***** select game *****"
-		puts "1. Slots"
-		puts "2. High/Low"
 
-		case gets.strip
-		when "1"
+		while true
+			puts "***** select game *****"
+			puts "1. Slots"
+			puts "2. High/Low"
+			puts "3. Exit"
 
-		when "2"
-			HighLow.play(@player)
-		else
+			case gets.strip
+			when "1"
+
+			when "2"
+				HighLow.play(@player)
+
+			when "3"
+				puts "Are you sure you want to exit? (y/n)"
+				input = gets.strip.downcase
+				 if input == 'y'
+				 	exit
+				 elsif input == 'n'
+				 	puts "Good choice"
+				 else
+				 	puts "invalid input try again!"
+				 end
+			else
+			end
 		end
 		
 	end

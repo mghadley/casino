@@ -5,7 +5,7 @@ module Mechanics
 			bet = gets.strip.to_i
 			if bet > player.bank_roll
 				puts "You don't have that much money"
-				get_bet
+				get_bet(player)
 			elsif bet <= 0
 				puts "That is not a valid bet"
 				get_bet(player)
