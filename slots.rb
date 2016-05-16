@@ -1,16 +1,15 @@
 class Slots
-	attr_accessor :player
 	
+	def play(player)
+		Array.["Cherry", "BAR", "Sevens"]
+		arr = random
 
-	def play
+	def self.menu(player)
+		@player = Mechanics::player.new
 		puts "--Welcome to the $5 Slots---
 		Make a selection...
 		1)Spin
-		2)Cash Out and exit Slots"
-
-		sele = gets.to_i
-			if 1
-
-	end
-end		
-
+		2)Cash Out and exit Slots"	
+			user_input = gets.strip
+	end		
+end
