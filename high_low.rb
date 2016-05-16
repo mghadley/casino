@@ -1,4 +1,6 @@
 module HighLow
+	attr_accessor :player
+	
 	def self.play(player)
 		@deck = Mechanics::Deck.new
 		@player_card = @deck.cards.sample
@@ -33,6 +35,24 @@ module HighLow
 					player.bank_roll -= bet
 					puts "Your remaining bankroll is #{player.bank_roll}"
 				end
-			end
+		end
+		continue?(player)
+	end
+
+	def continue?(player)
+		puts "What would you like to do"
+		puts "1. Play again"
+		puts "2. Cash out"
+		input = gets.strip
+		if input == "1"
+			HighLow.play(player)
+		elsif input == "2"
+			puts "Your current bankroll is #{player.bank_roll}"
+			break
+		else
+			puts "That is not valid input"
+			continue?(player)
+		end
 	end
 end
+

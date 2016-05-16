@@ -37,3 +37,5 @@ end
 
 @player_game = Casino.new
 @player_game.game_menu
+
+
