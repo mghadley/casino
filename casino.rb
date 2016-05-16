@@ -27,7 +27,7 @@ class Casino
 		when "1"
 
 		when "2"
-			HighLow.play
+			HighLow.play(@player)
 		else
 		end
 		
