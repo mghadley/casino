@@ -26,7 +26,7 @@ module Mechanics
 	
 
 	class Deck
-		attr_accessor :card
+		attr_accessor :cards
 
 		def initialize
 			@suits = %w(Diamonds Hearts Clubs Spades)

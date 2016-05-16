@@ -18,7 +18,7 @@ class Casino
 
 	def game_menu
 
-		Mechanics::Player.new
+		@player = Mechanics::Player.new
 		puts "***** select game *****"
 		puts "1. Slots"
 		puts "2. High/Low"
@@ -28,7 +28,6 @@ class Casino
 
 		when "2"
 			HighLow.play
-
 		else
 		end
 		

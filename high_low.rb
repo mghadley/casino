@@ -1,11 +1,11 @@
 module HighLow
 	def self.play
-		@deck = Deck.new
-		@player_card = @deck.sample
-		@deck.delete(@player_card)
-		@dealer_card = @deck.sample
+		@deck = Mechanics::Deck.new
+		@player_card = @deck.cards.sample
+		@deck.cards.delete(@player_card)
+		@dealer_card = @deck.cards.sample
 		puts "Your card is:
-					the #{player_card.rank} of #{player_card.suit}"
+					the #{@player_card.rank} of #{@player_card.suit}"
 		bet = Mechanics::Bet.get_bet
 		puts "Is your card higher or lower than the dealer's?"
 		case gets.strip.downcase
