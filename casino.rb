@@ -5,6 +5,7 @@
 require 'pry'
 require_relative 'high_low'
 require_relative 'slots'
+require_relative 'roulette'
 #TODO create main method
 #player class
 #slot machine module or class
@@ -17,6 +18,7 @@ class Casino
 	include Mechanics
 	include HighLow
 	include Slots
+	include Roulette
 
 	def game_menu
 
@@ -32,9 +34,10 @@ class Casino
 			puts "***** select game *****".colorize(:color => :black, :background => :light_blue)
 			puts "1. Slots".colorize(:color => :white, :background => :blue)
 			puts "2. High/Low".colorize(:color => :white, :background => :blue)
-			puts "3. Add New player".colorize(:color => :white, :background => :blue)
-			puts "4. Switch Player".colorize(:color => :white, :background => :blue)
-			puts "5. Exit".colorize(:color => :white, :background => :blue)
+			puts "3. Roulette".colorize(:color => :white, :background => :blue)
+			puts "4. Add New player".colorize(:color => :white, :background => :blue)
+			puts "5. Switch Player".colorize(:color => :white, :background => :blue)
+			puts "6. Exit".colorize(:color => :white, :background => :blue)
 
 			case gets.strip
 			when "1"
@@ -50,13 +53,15 @@ class Casino
 				HighLow.play(@current_player)
 
 			when "3"
-	 
+				Roulette.play(@current_player)
+
+			when "4"
 				new_player = Mechanics::Player.new
 				@multi_player << new_player.name
 				@current_player = new_player
 				@helper_arr << @current_player
 
-			when "4"
+			when "5"
 				puts @multi_player
 				puts "Enter new player name: "
 				name = gets.strip
@@ -68,7 +73,7 @@ class Casino
 					# set current player to new player
 				end
 
-			when "5"
+			when "6"
 				puts "Are you sure you want to exit? (y/n)"
 				input = gets.strip.downcase
 				 if input == 'y'
