@@ -39,6 +39,9 @@ module HighLow
 					Mechanics::Balance.check_balance(player)
 					puts "Your remaining bankroll is #{player.bank_roll}"
 				end
+			else
+				puts "Invalid input. Starting over.".red
+				HighLow.play(player)
 		end
 		HighLow.continue?(player)
 	end

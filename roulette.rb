@@ -4,30 +4,36 @@ module Roulette
 	attr_accessor :player
 
 	def self.wheel
-		@b = %w(15 4 2 17 6 13 11 8 10 24 33 20 31 22 29 28 35 26).map {|n| n.colorize(:color => :black, :background => :white)}
-		@r = %w(32 19 21 25 34 27 36 30 23 5 16 1 14 9 18 7 12 3).map { |n| n.colorize(:color => :red, :background => :white)}
-		@g = ["0"].map { |n| n.colorize(:color => :green, :background => :white)}
-		@possibilities = [@b, @r, @g]
+		@b = [15, 4, 2, 17, 6, 13, 11, 8, 10, 24, 33, 20, 31, 22, 29, 28, 35, 26]
+		@r = [32, 19, 21, 25, 34, 27, 36, 30, 23, 5, 16, 1, 14, 9, 18, 7, 12, 3]
+		@g = [0]
+		@wb = %w(15 4 2 17 6 13 8 10 24 33 20 31 22 29 28 35 26).map {|n| n.colorize(:color => :black, :background => :white)}
+		@wr = %w(32 29 21 25 34 27 36 30 23 5 16 1 14 9 18 7 12 3).map { |n| n.colorize(:color => :red, :background => :white)}
+		@wg = %w(0).map { |n| n.colorize(:color => :green, :background => :white)}
+		@possibilities = [@b, @b, @b, @b, @b, @b, @b, @b, @b, @b, @b, @b, @b, @b, @b, @b, @b, @b,
+			                @r, @r, @r, @r, @r, @r, @r, @r, @r, @r, @r, @r, @r, @r, @r, @r, @r, @r, @g]
+		# @possibilities = [@g] #used for forcing win
 
-		@wheel = """                 #{@g[0]}
-            #{@b[17]}       #{@r[0]}
-        #{@r[17]}       #{@b[0]}
-       #{@b[16]}         #{@r[1]}
-      #{@r[16]}           #{@b[1]}
-     #{@b[15]}              #{@r[2]}
-    #{@r[15]}               #{@b[2]}
-   #{@b[14]}                 #{@r[3]}
-  #{@r[14]}                   #{@b[3]}
- #{@b[13]}                     #{@r[4]}
- #{@r[13]}                     #{@b[4]}
-  #{@b[12]}                   #{@r[5]}
-   #{@r[12]}                 #{@b[5]}
-    #{@b[11]}               #{@r[6]}
-     #{@r[11]}             #{@b[6]}
-     	#{@b[10]}           #{@r[7]}
-     	 #{@r[10]}         #{@b[7]}
-     	   #{@b[9]}      #{@r[8]}
-     	     #{@r[9]}  #{@b[8]}
+		@wheel = """                           
+		            #{@wg[0]}
+                       #{@wb[17]}       #{@wr[0]}         
+                 #{@wr[17]}                   #{@wb[0]}          
+             #{@wb[16]}                           #{@wr[1]}          
+         #{@wr[16]}                                  #{@wb[1]}            
+      #{@wb[15]}                                       #{@wr[2]}        
+    #{@wr[15]}                                            #{@wb[2]}     
+   #{@wb[14]}                                              #{@wr[3]}      
+  #{@wr[14]}                                                #{@wb[3]}      
+ #{@wb[13]}                                                  #{@wr[4]} 
+ #{@wr[13]}                                                 #{@wb[4]}
+  #{@wb[12]}                                              #{@wr[5]}
+   #{@wr[12]}                                            #{@wb[5]}
+    #{@wb[11]}                                        #{@wr[6]}
+     #{@wr[11]}                                   #{@wb[6]}
+     	 #{@wb[10]}                             #{@wr[7]}
+     	    #{@wr[10]}                     #{@wb[7]}
+     	         #{@wb[9]}            #{@wr[8]}
+     	              #{@wr[9]} #{@wb[8]}
  """.colorize(:background => :white)
 	end
 
@@ -39,17 +45,21 @@ module Roulette
 		case choice
 			when "1"
 				result = Roulette.color
+				multiplier = 1
 			when "2"
 				result = Roulette.odd_even
+				multiplier = 1
 			when "3"
 				result = Roulette.number
+				multiplier = 35
 			else
 				puts "Invalid input"
-				Roulette.get_choice
+				Roulette.play(player)
 		end
 		if result
 			puts "You win!!".green
-			player.bank_roll += bet
+			puts "You win $#{bet * multiplier}"
+			player.bank_roll += bet * multiplier
 			Roulette.play_again?(player)
 		else
 			puts "You lose!!".red
@@ -76,9 +86,8 @@ module Roulette
 		guess_hash = {"1" => @r, "2" => @b, "3" => @r}
 		guess = gets.strip
 		spin_result = @possibilities.sample
-		binding.pry
 		puts "Landed on #{spin_result.sample}"
-		guess_hash[guess] == spin_result
+		return guess_hash[guess] == spin_result
 	end
 
 	def self.odd_even
@@ -89,9 +98,9 @@ module Roulette
 		spin_result = @possibilities.sample.sample
 		puts "Landed on #{spin_result}"
 		if guess == "1"
-			(spin_result.to_i % 2) != 0
+			return (spin_result % 2) != 0
 		elsif guess == "2"
-			(spin_result.to_i % 2) == 0
+			return (spin_result % 2) == 0
 		else
 			puts "Invalid input"
 			Roulette.odd_even
@@ -104,8 +113,8 @@ module Roulette
 		guess = gets.strip.to_i
 		if guess.between?(0, 36)
 			spin_result = @possibilities.sample.sample
-			puts "The number is #{spin_result.to_i}"
-			guess.to_i == spin_result.to_i
+			puts "The number is #{spin_result}"
+			return guess == spin_result
 		else
 			puts "Invalid input"
 			Roulette.number
