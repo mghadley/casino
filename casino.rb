@@ -35,7 +35,7 @@ class Casino
 					Slots.play(@player)
 				else
 					puts "Your current bankroll is $#{player.bank_roll}"
-					puts "You do not have enought money for slots. Maybe try High Low"
+					puts "You do not have enough money for slots. Maybe try High Low"
 				end
 			when "2"
 				HighLow.play(@player)

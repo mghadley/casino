@@ -7,8 +7,7 @@ module HighLow
 		@player_card = @deck.cards.sample
 		@deck.cards.delete(@player_card)
 		@dealer_card = @deck.cards.sample
-		puts "Your card is:
-					the #{@player_card.rank} of #{@player_card.suit}"
+		puts "Your card is: \nthe #{@player_card.rank} of #{@player_card.suit}"
 		bet = Mechanics::Bet.get_bet(player)
 		puts "Is your card higher or lower than the dealer's?"
 		case gets.strip.downcase
