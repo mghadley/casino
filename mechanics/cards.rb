@@ -10,13 +10,13 @@ module Mechanics
 
 		def assign_value
 			case @rank
-				when "A"
+				when "Ace"
 					value = 14
-				when "K"
+				when "King"
 					value = 13
-				when "Q"
+				when "Queen"
 					value = 12
-				when "J"
+				when "Jack"
 					value = 11
 				else
 					value = @rank.to_i
@@ -30,7 +30,7 @@ module Mechanics
 
 		def initialize
 			@suits = %w(Diamonds Hearts Clubs Spades)
-			@ranks = %w(A 2 3 4 5 6 7 8 9 10 J Q K)
+			@ranks = %w(Ace 2 3 4 5 6 7 8 9 10 Jack Queen King)
 			@cards = []
 			generate_deck
 		end
