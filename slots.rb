@@ -3,24 +3,24 @@ module Slots
 	
 	def self.play(player)
 		@cont = true
-		@slots_arr = ["BAR", "☃", "☺", "❤", "✄", "⌘"]
+		@slots_arr = ["BAR", "☃", "☺", "❤", "✄", "⌘", "7"]
 		puts "Press Enter to spin, type exit to cancel"
 		user_input = gets
 		if user_input == "\n"
 			Slots.spin
 			case Slots.results
 				when "jackpot"
-					puts "JACKPOT!!!!!!"
+					puts "JACKPOT!!!!!!".green
 					puts "You won $100"
 					player.bank_roll += 100
 				when "win"
-					puts "You won $50"
+					puts "You won $50".green
 					player.bank_roll += 50
 				when "baby win"
-					puts "You won $5"
+					puts "You won $5".green
 					player.bank_roll += 5
 				else 
-					puts "You lossssttttt"
+					puts "You lossssttttt".red
 					player.bank_roll -= 5
 					Mechanics::Balance.check_balance(player)
 					puts "Your bankroll is now #{player.bank_roll}"
@@ -39,7 +39,7 @@ module Slots
 		@spin_arr = []
 		3.times { @spin_arr << @slots_arr.sample }
 		@spin_arr
-		puts "#{@spin_arr[0]} | #{@spin_arr[1]} | #{@spin_arr[2]}"
+		puts "#{@spin_arr[0]} | #{@spin_arr[1]} | #{@spin_arr[2]}".blue
 	end
 
 	def self.results

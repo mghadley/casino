@@ -1,3 +1,5 @@
+require 'colorize'
+
 module HighLow
 	attr_accessor :player 
 	
@@ -14,12 +16,12 @@ module HighLow
 			when "lower"
 				if @player_card.value < @dealer_card.value
 					puts "The dealer's card is the #{@dealer_card.rank} of #{@dealer_card.suit}"
-					puts "You win!!"
+					puts "You win!!".green
 					player.bank_roll += bet
 					puts "Your remaining bankroll is #{player.bank_roll}"
 				else
 					puts "The dealer's card is the #{@dealer_card.rank} of #{@dealer_card.suit}"
-					puts "You lose!!"
+					puts "You lose!!".red
 					player.bank_roll -= bet
 					Mechanics::Balance.check_balance(player)
 					puts "Your remaining bankroll is #{player.bank_roll}"
@@ -27,12 +29,12 @@ module HighLow
 			when "higher"
 				if @player_card.value > @dealer_card.value
 					puts "The dealer's card is the #{@dealer_card.rank} of #{@dealer_card.suit}"
-					puts "You win!!"
+					puts "You win!!".green
 					player.bank_roll += bet
 					puts "Your remaining bankroll is #{player.bank_roll}"
 				else
 					puts "The dealer's card is the #{@dealer_card.rank} of #{@dealer_card.suit}"
-					puts "You lose!!"
+					puts "You lose!!".red
 					player.bank_roll -= bet
 					Mechanics::Balance.check_balance(player)
 					puts "Your remaining bankroll is #{player.bank_roll}"
