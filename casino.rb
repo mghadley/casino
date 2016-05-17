@@ -25,17 +25,17 @@ class Casino
 		@multi_player << @current_player.name
 		@helper_arr = []
 		@helper_arr << @current_player
-		# @multi_player[@count] = @player.name
 
 		while true
 			puts "***** select game *****".colorize(:color => :black, :background => :light_blue)
-			puts "1. Slots".colorize(:color => :white, :background => :blue)
-			puts "2. High/Low".colorize(:color => :white, :background => :blue)
-			puts "3. Roulette".colorize(:color => :white, :background => :blue)
-			puts "4. Craps".colorize(:color => :white, :background => :blue)
-			puts "5. Add New player".colorize(:color => :white, :background => :blue)
-			puts "6. Switch Player".colorize(:color => :white, :background => :blue)
-			puts "7. Exit".colorize(:color => :white, :background => :blue)
+
+			puts "1. Slots               ".colorize(:color => :white, :background => :blue)
+			puts "2. High/Low            ".colorize(:color => :white, :background => :blue)
+			puts "3. Roulette            ".colorize(:color => :white, :background => :blue)
+			puts "4. Craps               ".colorize(:color => :white, :background => :blue)
+			puts "5. Add New player      ".colorize(:color => :white, :background => :blue)
+			puts "6. Switch Player       ".colorize(:color => :white, :background => :blue)
+			puts "7. Exit                ".colorize(:color => :white, :background => :blue)
 
 			case gets.strip
 			when "1"
