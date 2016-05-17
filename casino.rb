@@ -6,6 +6,7 @@ require 'pry'
 require_relative 'high_low'
 require_relative 'slots'
 require_relative 'roulette'
+require_relative 'craps'
 #TODO create main method
 #player class
 #slot machine module or class
@@ -15,10 +16,6 @@ Dir[File.dirname(__FILE__) + '/mechanics/*.rb'].each {|file| require file}
 
 class Casino
 
-	include Mechanics
-	include HighLow
-	include Slots
-	include Roulette
 
 	def game_menu
 
@@ -35,9 +32,10 @@ class Casino
 			puts "1. Slots".colorize(:color => :white, :background => :blue)
 			puts "2. High/Low".colorize(:color => :white, :background => :blue)
 			puts "3. Roulette".colorize(:color => :white, :background => :blue)
-			puts "4. Add New player".colorize(:color => :white, :background => :blue)
-			puts "5. Switch Player".colorize(:color => :white, :background => :blue)
-			puts "6. Exit".colorize(:color => :white, :background => :blue)
+			puts "4. Craps".colorize(:color => :white, :background => :blue)
+			puts "5. Add New player".colorize(:color => :white, :background => :blue)
+			puts "6. Switch Player".colorize(:color => :white, :background => :blue)
+			puts "7. Exit".colorize(:color => :white, :background => :blue)
 
 			case gets.strip
 			when "1"
@@ -54,14 +52,19 @@ class Casino
 
 			when "3"
 				Roulette.play(@current_player)
-
 			when "4"
+				puts "**** Craps!!! *****"
+				puts "Place your bet and roll the dice. A 7 or an 11 win(PASS) and a 2, 3 "
+				puts "or 12 Loses(CRAP OUT) anything you roll again"
+				Craps.play(@current_player)
+
+			when "5"
 				new_player = Mechanics::Player.new
 				@multi_player << new_player.name
 				@current_player = new_player
 				@helper_arr << @current_player
 
-			when "5"
+			when "6"
 				puts @multi_player
 				puts "Enter new player name: "
 				name = gets.strip
@@ -73,7 +76,7 @@ class Casino
 					# set current player to new player
 				end
 
-			when "6"
+			when "7"
 				puts "Are you sure you want to exit? (y/n)"
 				input = gets.strip.downcase
 				 if input == 'y'
