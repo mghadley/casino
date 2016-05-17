@@ -32,12 +32,12 @@ class Casino
 
 		while true
 			puts "***** select game *****".colorize(:color => :black, :background => :light_blue)
-			puts "1. Slots".colorize(:color => :white, :background => :blue)
-			puts "2. High/Low".colorize(:color => :white, :background => :blue)
-			puts "3. Roulette".colorize(:color => :white, :background => :blue)
-			puts "4. Add New player".colorize(:color => :white, :background => :blue)
-			puts "5. Switch Player".colorize(:color => :white, :background => :blue)
-			puts "6. Exit".colorize(:color => :white, :background => :blue)
+			puts "1. Slots               ".colorize(:color => :white, :background => :blue)
+			puts "2. High/Low            ".colorize(:color => :white, :background => :blue)
+			puts "3. Roulette            ".colorize(:color => :white, :background => :blue)
+			puts "4. Add New player      ".colorize(:color => :white, :background => :blue)
+			puts "5. Switch Player       ".colorize(:color => :white, :background => :blue)
+			puts "6. Exit                ".colorize(:color => :white, :background => :blue)
 
 			case gets.strip
 			when "1"

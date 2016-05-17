@@ -9,8 +9,8 @@ module Roulette
 		@g = ["0"].map { |n| n.colorize(:color => :green, :background => :white)}
 		@possibilities = [@b, @r, @g]
 
-		@wheel = """             #{@g[0]}
-          #{@b[17]}   #{@r[0]}
+		@wheel = """                 #{@g[0]}
+            #{@b[17]}       #{@r[0]}
         #{@r[17]}       #{@b[0]}
        #{@b[16]}         #{@r[1]}
       #{@r[16]}           #{@b[1]}
