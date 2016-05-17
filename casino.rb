@@ -23,10 +23,11 @@ class Casino
 		@player = Mechanics::Player.new
 
 		while true
-			puts "***** select game *****"
-			puts "1. Slots"
-			puts "2. High/Low"
-			puts "3. Exit"
+			puts "***** select game *****".colorize(:color => :black, :background => :light_blue)
+			puts "1. Slots               ".colorize(:color => :white, :background => :blue)
+			puts "2. High/Low            ".colorize(:color => :white, :background => :blue)
+			puts "3. Roulette            ".colorize(:color => :white, :background => :blue)
+			puts "4. Exit                ".colorize(:color => :white, :background => :blue)
 
 			case gets.strip
 			when "1"
@@ -40,7 +41,7 @@ class Casino
 			when "2"
 				HighLow.play(@player)
 
-			when "3"
+			when "4"
 				puts "Are you sure you want to exit? (y/n)"
 				input = gets.strip.downcase
 				 if input == 'y'
