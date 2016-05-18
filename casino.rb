@@ -25,6 +25,7 @@ class Casino
 		@multi_player << @current_player.name
 		@helper_arr = []
 		@helper_arr << @current_player
+		# @multi_player[@count] = @player.name
 
 		while true
 			puts "***** select game *****".colorize(:color => :black, :background => :light_blue)
@@ -74,6 +75,8 @@ class Casino
 					@current_player = @helper_arr[get_index]
 					puts "#{@current_player.name} your bank roll is $#{@current_player.bank_roll}"
 					# set current player to new player
+				else
+					puts "#{name} is not in database"
 				end
 
 			when "7"

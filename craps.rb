@@ -1,7 +1,9 @@
 module Craps
+
 	attr_accessor :player
 
 	@cont = true
+	@count = 0
 	
 	def self.play(player)
 
@@ -11,14 +13,11 @@ module Craps
 		puts "result of random generator #{@result}"
 
 		if @result == 7 || @result == 11
-
 			puts "PASS!"
 			print "#{@roll_dice}\n"
 			player.bank_roll += bet
 			puts "your balance is $#{player.bank_roll}"
-			puts "Play Again? (y/n)"
-			input = gets.strip.downcase
-			Craps.user_input(input, player)
+			Craps.user_input(player)
 
 		elsif @result == 2 || @result == 3 || @result == 12
 
@@ -26,27 +25,31 @@ module Craps
 			print "#{@roll_dice}\n"
 			player.bank_roll -= bet
 			puts "your balance is $#{player.bank_roll}"
-			puts "Play Again? (y/n)"
-			input = gets.strip.downcase
-			Craps.user_input(input, player)
+			Craps.user_input(player)
 
 		else
-			print "#{@roll_dice}\n"
-			puts "Play Again? (y/n)"
-			input = gets.strip.downcase
-			Craps.user_input(input, player)
+			puts "Try again "
+			print "#{@roll_dice}\n"		
+			Craps.user_input(player)
 
 		end
 
 	end
 
-	def self.user_input(input, player)
-		if input == 'y'
+	def self.user_input(player)
+		
+		puts "What would you like to do?"
+				puts "1. Play again"
+				puts "2. Cash out"
+				input = gets.strip
+		    if input == '1'
 				self.play(player)
-			elsif input == 'n'
+			elsif input == '2'
+			puts "Your current bankroll is #{player.bank_roll}"
 			  Craps.back_to_menu
 			else
 				puts "invalid input"
+				user_input(player)
 			end
 	end
 
