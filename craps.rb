@@ -8,7 +8,7 @@ module Craps
 		@roll_dice = Mechanics::Dice.roll
 		bet = Mechanics::Bet.get_bet(player)
 		@result = @roll_dice.inject(0){|sum, x| sum + x}
-		puts "result of random generator #{@result}"
+		puts "Dice rolled - #{@result}"
 
 		if @result == 7 || @result == 11
 
